@@ -9,7 +9,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="App" style={isLoading?{backgroundColor:"white"}:{backgroundColor:"red", height:"100vh"}}>
+    <div className="App" style={isLoading?{backgroundColor:"red"}:{backgroundColor:"red", height:"100vh"}}>
       <Loading isLoading={isLoading}/>
       {!isLoading && <Header />}
       <GameBoard setIsLoading={setIsLoading}/>
