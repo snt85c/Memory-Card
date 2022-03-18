@@ -7,7 +7,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header{
+  display: flex;
+  height: 100px;
+  border: 1px solid black
+}
+.loader{
+  width: 200px;
+  height: 200px;
+  animation: rotation 2s linear infinite;
+}
+.card{
+  transition-duration: 0.2s;
+}
+.card:hover{
+  transform: scale(1.1);
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

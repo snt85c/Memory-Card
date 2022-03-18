@@ -1,10 +1,18 @@
 import './App.css';
-import ApiFunctions from './apiFunctions';
+import { useState } from 'react';
+import GameBoard from './GameBoard';
+import Header from './Header';
+import Loading from './Loading';
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div className="App">
-      <ApiFunctions />
+    <div className="App" style={isLoading?{backgroundColor:"white"}:{backgroundColor:"red", height:"100vh"}}>
+      <Loading isLoading={isLoading}/>
+      {!isLoading && <Header />}
+      <GameBoard setIsLoading={setIsLoading}/>
     </div>
   );
 }
