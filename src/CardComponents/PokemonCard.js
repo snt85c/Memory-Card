@@ -2,14 +2,20 @@ import { cardBackgroundColor, noDash } from "../utils/utils";
 import PokemonCardHeader from "./PokemonCardHeader";
 import PokemonCardImage from "./PokemonCardImage";
 import PokemonCardFooter from "./PokemonCardFooter";
+import { useState } from "react";
 
 export default function PokemonCard({ data, func }) {
+
+  const [isLoaded, setIsLoaded] = useState(false)
+  console.log(isLoaded)
+  //maybe count all the loaded, and when reach it set to flex
+
   return (
     <div
       className="card"
       id={noDash(data.name)}
       style={{
-        display: "flex",
+        display: isLoaded?"flex":"none",
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "5px",
@@ -36,6 +42,7 @@ export default function PokemonCard({ data, func }) {
         <PokemonCardImage
           url={data.sprites.other["official-artwork"].front_default}
           name={data.name}
+          setIsLoaded={setIsLoaded}
         />
         <PokemonCardFooter data1={data.moves[0]} data2={data.moves[1]} />
       </div>

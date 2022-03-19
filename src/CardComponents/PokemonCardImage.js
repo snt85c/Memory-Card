@@ -1,4 +1,6 @@
-export default function PokemonCardImage({url,name}){
+export default function PokemonCardImage({url,name, setIsLoaded}){
+
+
     return(
         <>
 
@@ -6,7 +8,8 @@ export default function PokemonCardImage({url,name}){
           <img
             src={url}
             alt={name}
-            style={{ objectFit: "contain", width: "130px", height: "130px" }}
+            style={{ display:"flex",objectFit: "contain", width: "130px", height: "130px" }}
+            onLoad={()=>setIsLoaded(true)}
           ></img>
         </div>
         </>
