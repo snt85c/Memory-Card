@@ -7,7 +7,7 @@ export default function GameBoard({ gameLogic, setGameLogic}) {
   const [pokemonNamesList, setPokemonNameList] = useState([])
 
 
-  const CARD_NUMBER = 6;
+  const CARD_NUMBER = 4;
 
   function handleClick(e){
     const name = e.currentTarget.id

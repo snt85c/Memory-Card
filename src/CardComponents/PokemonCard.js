@@ -7,12 +7,10 @@ import { useState } from "react";
 export default function PokemonCard({ data, func }) {
 
   const [isLoaded, setIsLoaded] = useState(false)
-  console.log(isLoaded)
-  //maybe count all the loaded, and when reach it set to flex
 
   return (
     <div
-      className="card"
+      className="card cardPop"
       id={noDash(data.name)}
       style={{
         display: isLoaded?"flex":"none",
