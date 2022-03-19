@@ -83,7 +83,7 @@ body {
 }
 
 .cardPop{
-  animation: 0.4s ease-out fadeIn 1;
+  animation: pop 0.4s ease-out ;
 }
 
 @keyframes fadeIn {
