@@ -1,13 +1,12 @@
-import { firstToUpperCase, cardBackgroundColor } from "./utils";
+import { cardBackgroundColor, modifiedName, noDash } from "./utils";
 
-export default function PokemonCard({data}) {
-
-
+export default function PokemonCard({data, func}) {
 
 
   return (
     <div
       className="card"
+      id={noDash(data.name)}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -23,6 +22,7 @@ export default function PokemonCard({data}) {
         perspective: "1000px",
         backgroundImage: `linear-gradient( black, ${cardBackgroundColor(data.types[0].type.name)})`,
       }}
+      onClick={func}
     >
       <div
         style={{
@@ -41,7 +41,7 @@ export default function PokemonCard({data}) {
             maxHeight: "20px",
           }}
         >
-          {firstToUpperCase(data.name)}
+          {modifiedName(data.name)}
           <div style={{ display: "flex", fontSize: "1.5vh" }}>
             hp:
             <div style={{ fontSize: "2vh" }}>
@@ -60,8 +60,8 @@ export default function PokemonCard({data}) {
           style={{ fontSize: "2vh", textAlign: "left", padding: "1px" }}
           className="cardDescription"
         >
-          <div>{data.moves[0].move.name}</div>
-          <div>{data.moves[1].move.name}</div>
+          <div>{data.moves[0] ===undefined? "": data.moves[0].move.name}</div>
+          <div>{data.moves[1] === undefined? "": data.moves[1].move.name}</div>
         </div>
       </div>
     </div>
