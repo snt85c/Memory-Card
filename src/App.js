@@ -1,18 +1,25 @@
-import './App.css';
-import { useState } from 'react';
-import GameBoard from './GameBoard';
-import Header from './Header';
-import Loading from './Loading';
+import "./App.css";
+import { useState } from "react";
+import GameBoard from "./Components/GameBoard";
+import Header from "./Components/Header";
+import Loading from "./Components/Loading";
 
 function App() {
-
-  const [isLoading, setIsLoading] = useState(true);
+  const [gameLogic, setGameLogic] = useState({
+    isLoading: true,
+    gameOver: false,
+    score: 0,
+  });
 
   return (
-    <div className="App" style={{backgroundColor:"red"}}>
-      <Loading isLoading={isLoading}/>
-      {!isLoading && <Header />}
-      <GameBoard setIsLoading={setIsLoading}/>
+    <div className="App">
+      <Loading isLoading={gameLogic.isLoading} />
+      {!gameLogic.isLoading && <Header score={gameLogic.score} />}
+      <GameBoard
+        setIsLoading={gameLogic.setIsLoading}
+        gameLogic={gameLogic}
+        setGameLogic={setGameLogic}
+      />
     </div>
   );
 }

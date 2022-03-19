@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
-import PokemonCard from "./PokemonCard";
-import {randomNumber, noDash, shuffle} from "./utils";
+import PokemonCard from "../CardComponents/PokemonCard";
+import {randomNumber, noDash, shuffle} from "../utils/utils";
 
-export default function GameBoard({setIsLoading}) {
+export default function GameBoard({ gameLogic, setGameLogic}) {
   const [pokemonList, setPokemonList] = useState([]);
   const [pokemonNamesList, setPokemonNameList] = useState([])
-  const [gameOver, setGameOver] = useState(false);
+
+
+  const CARD_NUMBER = 6;
 
   function handleClick(e){
     const name = e.currentTarget.id
-    if(!gameOver){
+    if(!gameLogic.gameOver){
       if(pokemonNamesList.length === 1){
         console.log("winner")
         setPokemonNameList([])
-        setGameOver(true)
+        setGameLogic({...gameLogic,gameOver:true})
       }
       if(!pokemonNamesList.includes(name)){
         console.log("gameover")
         setPokemonNameList([])
-        setGameOver(true)
+        setGameLogic({...gameLogic,gameOver:true})
+
       } else {
         setPokemonNameList(pokemonNamesList.filter((card)=>{
           return card !== name
         }))
         setPokemonList(shuffle(pokemonList))
+        setGameLogic({...gameLogic, score: gameLogic.score+1})
         console.log(e.currentTarget.id)
         console.log(pokemonNamesList)
       }
@@ -33,20 +37,19 @@ export default function GameBoard({setIsLoading}) {
     async function fetchPokemon() {
       const pokemons = [];
       const pokemonNames = []
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < CARD_NUMBER; i++) {
         let random = randomNumber();
         let response = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${random}`
         );
         let pokemon = await response.json();
         pokemons.push(pokemon);
-        console.log(pokemon.name)
+        console.log(pokemon)
         pokemonNames.push(noDash(pokemon.name))
       }
-      console.log(pokemonNames)
       setPokemonList(pokemons);
       setPokemonNameList(pokemonNames)
-      setIsLoading(false)
+      setGameLogic({...gameLogic, isLoading:false})
     }
     fetchPokemon();
   },[]);
@@ -56,7 +59,7 @@ export default function GameBoard({setIsLoading}) {
     ));
   return (
     <>
-      <div style={{ display: "flex", justifyContent:"center", flexWrap:"wrap" }}>{pokemonCards}</div>
+      <div style={{ display: "flex", justifyContent:"center", flexWrap:"wrap", height:"70%", marginTop:"5%", backgroundColor:"red" }}>{pokemonCards}</div>
     </>
   );
 }

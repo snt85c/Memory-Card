@@ -1,26 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+html,
+body,
+#root {
+  height: 100%;
+  background-color: black;
 }
 
-.header{
-  display: flex;
-  height: 100px;
-  border: 1px solid black;
-  background-color: white;
-  
+body {
+  margin: 0% 10% 0% 10%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  background-color: red;
 }
-.loader{
+
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+  }
+  .headerLogo {
+    height: 50%;
+    width: 50%;
+  }
+}
+
+.App {
+  height: 100%;
+  background-color: red;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  background-color: white;
+}
+
+.loader {
+  background-color: "red";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.spinner {
   width: 200px;
   height: 200px;
   animation: rotation 2s linear infinite;
 }
-.card{
+
+.loadingtext {
+  width: 25%;
+  object-fit: "contain";
+  animation: pulse 0.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.card {
   transition-duration: 0.2s;
 }
-.card:hover{
+.card:hover {
   transform: scale(1.1);
 }
 
