@@ -3,9 +3,9 @@ import PokemonCard from "../CardComponents/PokemonCard";
 import {randomNumber, noDash, shuffle} from "../utils/utils";
 
 export default function GameBoard({ gameLogic, setGameLogic}) {
-  const [pokemonList, setPokemonList] = useState([]);
+    const [pokemonList, setPokemonList] = useState([]);
   const [pokemonNamesList, setPokemonNameList] = useState([])
-  const CARD_NUMBER = 5;
+  const CARD_NUMBER = 4;
 
   function handleClick(e){
     const name = e.currentTarget.id
