@@ -3,13 +3,22 @@ import { useState } from "react";
 import GameBoard from "./Components/GameBoard";
 import Header from "./Components/Header";
 import Loading from "./Components/Loading";
+import Gameover from "./Components/Gameover";
 
 function App() {
   const [gameLogic, setGameLogic] = useState({
     isLoading: true,
-    gameOver: false,
+    isGameover: false,
+    isWinner:false,
     score: 0,
   });
+
+
+  function restart(){
+    window.location.reload()
+  }
+
+  console.log(gameLogic)
 
   return (
     <div className="App">
@@ -20,6 +29,7 @@ function App() {
         gameLogic={gameLogic}
         setGameLogic={setGameLogic}
       />
+      <Gameover state={gameLogic} restart={restart}/>
     </div>
   );
 }

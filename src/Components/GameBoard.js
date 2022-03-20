@@ -5,22 +5,18 @@ import {randomNumber, noDash, shuffle} from "../utils/utils";
 export default function GameBoard({ gameLogic, setGameLogic}) {
   const [pokemonList, setPokemonList] = useState([]);
   const [pokemonNamesList, setPokemonNameList] = useState([])
-
-
-  const CARD_NUMBER = 4;
+  const CARD_NUMBER = 5;
 
   function handleClick(e){
     const name = e.currentTarget.id
     if(!gameLogic.gameOver){
       if(pokemonNamesList.length === 1){
-        console.log("winner")
         setPokemonNameList([])
-        setGameLogic({...gameLogic,gameOver:true})
+        setGameLogic({...gameLogic,isGameover:true,isWinner:true, score: gameLogic.score+1})
       }
-      if(!pokemonNamesList.includes(name)){
-        console.log("gameover")
+      else if(!pokemonNamesList.includes(name)){
         setPokemonNameList([])
-        setGameLogic({...gameLogic,gameOver:true})
+        setGameLogic({...gameLogic,isGameover:true})
 
       } else {
         setPokemonNameList(pokemonNamesList.filter((card)=>{
@@ -28,11 +24,10 @@ export default function GameBoard({ gameLogic, setGameLogic}) {
         }))
         setPokemonList(shuffle(pokemonList))
         setGameLogic({...gameLogic, score: gameLogic.score+1})
-        console.log(e.currentTarget.id)
-        console.log(pokemonNamesList)
       }
     }
   }
+
   useEffect(() => {
     async function fetchPokemon() {
       const pokemons = [];

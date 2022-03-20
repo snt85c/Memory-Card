@@ -5,37 +5,21 @@ import PokemonCardFooter from "./PokemonCardFooter";
 import { useState } from "react";
 
 export default function PokemonCard({ data, func }) {
-
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <div
       className="card cardPop"
       id={noDash(data.name)}
       style={{
-        display: isLoaded?"flex":"none",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "5px",
-        width: "140px",
-        height: "200px",
-        margin: "20px",
-        border: "2px solid brown",
-        borderRadius: "10px",
-        boxShadow: " 5px 5px 5px black",
-        backgroundImage: `linear-gradient( black, ${cardBackgroundColor(
+        display: isLoaded ? "flex" : "none",
+        backgroundImage: `linear-gradient( #024, ${cardBackgroundColor(
           data.types[0].type.name
         )})`,
       }}
       onClick={func}
     >
-      <div className="cardMargins"
-        style={{
-          padding: "5px 5px 0px 5px ",
-          borderRadius: "5px",
-          backgroundImage: ` radial-gradient(white,orange)`,
-        }}
-      >
+      <div className="cardMargins">
         <PokemonCardHeader name={data.name} stats={data.stats[0].base_stat} />
         <PokemonCardImage
           url={data.sprites.other["official-artwork"].front_default}

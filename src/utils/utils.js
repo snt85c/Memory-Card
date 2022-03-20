@@ -63,6 +63,5 @@ export function shuffle(array) {
       array[currentIndex],
     ];
   }
-
   return array;
 }
